@@ -1,4 +1,5 @@
 import { BadRequest } from 'http-errors';
+import axios from 'axios';
 
 export type UrlContent = {
   url?: string;
@@ -12,6 +13,20 @@ export async function getUrlContent(urls: string[]): Promise<UrlContent[] | UrlC
       throw new BadRequest('Invalid input!');
     }
     const contents: UrlContent[] = [];
+
+    for (const url of urls) {
+      const urlContent: UrlContent = {};
+      urlContent.url = url;
+
+      if (!url) {
+        urlContent.error = 'Invalid file url!';
+      } else {
+        const content = await axios.get(url);
+        urlContent.content = content.data;
+      }
+
+      contents.push(urlContent);
+    }
 
     return contents;
   } catch (error) {
