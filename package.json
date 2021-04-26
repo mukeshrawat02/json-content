@@ -1,6 +1,6 @@
 {
   "name": "json-content",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library to fetch content from an array of URLs",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

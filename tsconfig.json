@@ -3,13 +3,14 @@
     "target": "es6",
     "esModuleInterop": true,
     "module": "commonjs",
+    "declaration": true,
+    "outDir": "./lib",
+    "strict": true,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "allowJs": true,
-    "outDir": "./lib",
-    "strict": true
+    "allowJs": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]
