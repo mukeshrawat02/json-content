@@ -1,0 +1,26 @@
+{
+  "name": "json-content",
+  "version": "1.0.0",
+  "description": "Library to fetch content from an array of URLs",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mukeshrawat02/json-content.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mukeshrawat02/json-content/issues"
+  },
+  "homepage": "https://github.com/mukeshrawat02/json-content#readme",
+  "author": "Mukesh Rawat",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  },
+  "files": [
+    "lib/**/*"
+  ]
+}
