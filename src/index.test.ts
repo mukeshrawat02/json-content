@@ -4,13 +4,19 @@ import axios from 'axios';
 jest.mock('axios');
 
 test('should return invalid input error for bad request', async (): Promise<void> => {
-  const res = (await getUrlContent([])) as UrlContent;
-  expect(res.error).toBe('Invalid input!');
+  const res: UrlContent[]  = (await getUrlContent([]));
+  expect(res).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        error: 'Invalid input!'
+      })
+    ]),
+  );
 });
 
 test('should return error for invalid urls', async (): Promise<void> => {
   const urls = ['', 'invalid_url', 'htt://wrong-url'];
-  const res = (await getUrlContent(urls)) as UrlContent[];
+  const res: UrlContent[]  = (await getUrlContent(urls));
   expect(res).toEqual(
     expect.arrayContaining([
       expect.objectContaining({ error: 'Invalid file url!', url: '' }),
@@ -25,7 +31,7 @@ test('should return content for valid urls', async (): Promise<void> => {
 
   const urls = ['https://example.com/ftse-fsi.json', 'https://example.com/gbp-hkd.json'];
 
-  const res = (await getUrlContent(urls)) as UrlContent[];
+  const res: UrlContent[]  = (await getUrlContent(urls));
 
   expect(res).toEqual(
     expect.arrayContaining([
@@ -44,6 +50,12 @@ test('should return content for valid urls', async (): Promise<void> => {
 test('should return error when failed to get json file', async (): Promise<void> => {
   (axios as jest.Mocked<typeof axios>).get.mockImplementationOnce(() => Promise.reject());
 
-  const res = (await getUrlContent(['https://example.com/ftse-fsi.json'])) as UrlContent;
-  expect(res.error).toBe('Error on getting url content!');
+  const res: UrlContent[] = (await getUrlContent(['https://example.com/ftse-fsi.json']));
+  expect(res).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        error: 'Error on getting url content!'
+      })
+    ]),
+  );
 });

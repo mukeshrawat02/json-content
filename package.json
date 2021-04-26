@@ -1,14 +1,16 @@
 {
   "name": "json-content",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Library to fetch content from an array of URLs",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint"
   },
   "repository": {
     "type": "git",
@@ -20,13 +22,15 @@
   "homepage": "https://github.com/mukeshrawat02/json-content#readme",
   "author": "Mukesh Rawat",
   "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "http-errors": "^1.8.0"
+  },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/http-errors": "^1.8.0",
     "@types/jest": "^26.0.22",
-    "axios": "^0.21.1",
     "codecov": "^3.8.1",
-    "http-errors": "^1.8.0",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.5",
