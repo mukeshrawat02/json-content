@@ -1,3 +1,5 @@
+import { BadRequest } from 'http-errors';
+
 export type UrlContent = {
   url?: string;
   content?: unknown;
@@ -5,9 +7,16 @@ export type UrlContent = {
 };
 
 export async function getUrlContent(urls: string[]): Promise<UrlContent[] | UrlContent> {
-  if (!urls || !urls.length) {
-    return { error: 'Invalid input!' };
+  try {
+    if (!urls || !urls.length) {
+      throw new BadRequest('Invalid input!');
+    }
+    const contents: UrlContent[] = [];
+
+    return contents;
+  } catch (error) {
+    return {
+      error: error?.message ?? 'Error on getting url content!',
+    };
   }
-  // getting url content from JSON files
-  return {};
 }
