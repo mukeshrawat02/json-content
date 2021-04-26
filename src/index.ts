@@ -12,13 +12,14 @@ export async function getUrlContent(urls: string[]): Promise<UrlContent[] | UrlC
     if (!urls || !urls.length) {
       throw new BadRequest('Invalid input!');
     }
+    const regEx: RegExp = /^(https?):\/\/[^\s]+(.json)$/;
     const contents: UrlContent[] = [];
 
     for (const url of urls) {
       const urlContent: UrlContent = {};
       urlContent.url = url;
 
-      if (!url) {
+      if (!url || !url.match(regEx)) {
         urlContent.error = 'Invalid file url!';
       } else {
         const content = await axios.get(url);
